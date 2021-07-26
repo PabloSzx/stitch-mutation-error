@@ -1,0 +1,30 @@
+{
+  "name": "gateway",
+  "scripts": {
+    "start": "node -r esbuild-register src/index.ts"
+  },
+  "dependencies": {
+    "@graphql-ez/fastify": "^0.8.0",
+    "@graphql-ez/plugin-altair": "^0.4.0",
+    "@graphql-ez/plugin-codegen": "^0.4.0",
+    "@graphql-ez/plugin-schema": "^0.2.0",
+    "@graphql-tools/delegate": "^7.1.5",
+    "@graphql-tools/stitch": "^7.5.3",
+    "@graphql-tools/wrap": "^7.0.8",
+    "content-type": "^1.0.4",
+    "fastify": "^3.19.2",
+    "graphql": "^15.5.1",
+    "graphql-ez": "^0.9.0",
+    "ms": "^2.1.3",
+    "undici": "^4.2.2",
+    "wait-on": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/content-type": "^1.1.5",
+    "@types/ms": "^0.7.31",
+    "@types/node": "^16.4.3",
+    "@types/wait-on": "^5.3.1",
+    "esbuild-register": "^2.6.0",
+    "typescript": "^4.3.5"
+  }
+}
