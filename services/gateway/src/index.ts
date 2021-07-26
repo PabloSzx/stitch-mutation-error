@@ -151,7 +151,6 @@ mutation c {
       console.error(err);
       return;
     }
-    open(`http://localhost:3000/voyager`).catch(console.error);
     open(`http://localhost:3000/altair`).catch(console.error);
   });
 }
