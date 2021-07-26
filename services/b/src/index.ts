@@ -19,11 +19,29 @@ const { buildApp } = CreateApp({
             type Query {
               hello: String!
             }
+
+            type FooMutations {
+              b: String!
+            }
+
+            type Mutation {
+              foo: FooMutations!
+            }
           `,
           resolvers: {
             Query: {
               hello() {
                 return "hello";
+              },
+            },
+            FooMutations: {
+              b() {
+                return "b";
+              },
+            },
+            Mutation: {
+              foo() {
+                return {};
               },
             },
           },

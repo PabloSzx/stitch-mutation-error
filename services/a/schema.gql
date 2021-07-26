@@ -1,7 +1,16 @@
 schema {
   query: Query
+  mutation: Mutation
 }
 
 type Query {
   hello: String!
+}
+
+type FooMutations {
+  a: String!
+}
+
+type Mutation {
+  foo: FooMutations!
 }

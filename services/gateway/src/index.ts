@@ -5,6 +5,7 @@ import ms from "ms";
 import { resolve } from "path";
 import { request } from "undici";
 import waitOn from "wait-on";
+import open from "open";
 
 import { CreateApp, EZContext } from "@graphql-ez/fastify";
 import { ezAltairIDE } from "@graphql-ez/plugin-altair";
@@ -52,7 +53,10 @@ async function getServiceSchema([name, port]: [name: string, port: number]) {
   }) {
     const query = print(document);
 
-    if (query === "mutation\n") throw Error("Error in gateway");
+    if (query === "mutation\n")
+      throw Error(
+        `Error in @graphql-tools/stitch, the document generated for the service ${name} was: '${query}'`
+      );
 
     const authorization = context?.request?.headers.authorization;
 
@@ -108,7 +112,28 @@ async function main() {
             enumsAsTypes: true,
           },
         }),
-        ezAltairIDE({}),
+        ezAltairIDE({
+          instanceStorageNamespace: "stitch-error",
+          initialQuery: `
+mutation a {
+  foo {
+    a
+  }
+}
+
+mutation b {
+  foo {
+    b
+  }
+}
+
+mutation c {
+  foo {
+    c
+  }
+}
+`.trimStart(),
+        }),
       ],
     },
     cors: true,
@@ -116,7 +141,13 @@ async function main() {
 
   app.register(buildApp().fastifyPlugin);
 
-  app.listen(3000);
+  app.listen(3000, (err) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    open(`http://localhost:3000/altair`).catch(console.error);
+  });
 }
 
 main().catch((err) => {

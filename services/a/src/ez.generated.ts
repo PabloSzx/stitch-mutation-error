@@ -30,6 +30,16 @@ export type Query = {
   hello: Scalars["String"];
 };
 
+export type FooMutations = {
+  __typename?: "FooMutations";
+  a: Scalars["String"];
+};
+
+export type Mutation = {
+  __typename?: "Mutation";
+  foo: FooMutations;
+};
+
 export type ResolverTypeWrapper<T> = Promise<T> | T;
 
 export type ResolverWithResolve<TResult, TParent, TContext, TArgs> = {
@@ -146,6 +156,8 @@ export type DirectiveResolverFn<
 export type ResolversTypes = {
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars["String"]>;
+  FooMutations: ResolverTypeWrapper<FooMutations>;
+  Mutation: ResolverTypeWrapper<{}>;
   Boolean: ResolverTypeWrapper<Scalars["Boolean"]>;
 };
 
@@ -153,6 +165,8 @@ export type ResolversTypes = {
 export type ResolversParentTypes = {
   Query: {};
   String: Scalars["String"];
+  FooMutations: FooMutations;
+  Mutation: {};
   Boolean: Scalars["Boolean"];
 };
 
@@ -163,8 +177,25 @@ export type QueryResolvers<
   hello?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
 };
 
+export type FooMutationsResolvers<
+  ContextType = EZContext,
+  ParentType extends ResolversParentTypes["FooMutations"] = ResolversParentTypes["FooMutations"]
+> = {
+  a?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type MutationResolvers<
+  ContextType = EZContext,
+  ParentType extends ResolversParentTypes["Mutation"] = ResolversParentTypes["Mutation"]
+> = {
+  foo?: Resolver<ResolversTypes["FooMutations"], ParentType, ContextType>;
+};
+
 export type Resolvers<ContextType = EZContext> = {
   Query?: QueryResolvers<ContextType>;
+  FooMutations?: FooMutationsResolvers<ContextType>;
+  Mutation?: MutationResolvers<ContextType>;
 };
 
 /**
