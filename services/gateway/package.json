@@ -8,6 +8,7 @@
     "@graphql-ez/plugin-altair": "^0.4.0",
     "@graphql-ez/plugin-codegen": "^0.4.0",
     "@graphql-ez/plugin-schema": "^0.2.0",
+    "@graphql-ez/plugin-voyager": "^0.4.0",
     "@graphql-tools/delegate": "^7.1.5",
     "@graphql-tools/stitch": "^7.5.3",
     "@graphql-tools/wrap": "^7.0.8",

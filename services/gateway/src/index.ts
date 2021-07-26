@@ -12,7 +12,7 @@ import { ezAltairIDE } from "@graphql-ez/plugin-altair";
 import { ezCodegen } from "@graphql-ez/plugin-codegen";
 import { stitchSchemas } from "@graphql-tools/stitch";
 import { introspectSchema } from "@graphql-tools/wrap";
-
+import { ezVoyager } from "@graphql-ez/plugin-voyager";
 import { servicesListPorts } from "../../../services";
 
 import type { AsyncExecutor, SubschemaConfig } from "@graphql-tools/delegate";
@@ -134,6 +134,11 @@ mutation c {
 }
 `.trimStart(),
         }),
+        ezVoyager({
+          displayOptions: {
+            rootType: "Mutation",
+          },
+        }),
       ],
     },
     cors: true,
@@ -146,6 +151,7 @@ mutation c {
       console.error(err);
       return;
     }
+    open(`http://localhost:3000/voyager`).catch(console.error);
     open(`http://localhost:3000/altair`).catch(console.error);
   });
 }
