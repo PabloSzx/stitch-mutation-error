@@ -2,7 +2,7 @@
 
 1. Clone repository
 2. Install dependencies with `pnpm i`
-3. Start all the services with the gateway writing `pnpm start` in the root
+3. Start all the services with the gateway running `pnpm start` in the root
 
 An Altair instance will open with the issue, if you press "run mutation a", or "run mutation b", a document generated for the incorrect service target and is filtered with basically nothing, only `mutation`.
 
