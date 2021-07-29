@@ -9,7 +9,7 @@
     "start": "pnpm -r --workspace-concurrency=Infinity start"
   },
   "devDependencies": {
-    "@types/node": "^16.4.3",
+    "@types/node": "^16.4.7",
     "typescript": "^4.3.5"
   }
 }

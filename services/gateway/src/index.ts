@@ -15,7 +15,8 @@ import { introspectSchema } from "@graphql-tools/wrap";
 import { ezVoyager } from "@graphql-ez/plugin-voyager";
 import { servicesListPorts } from "../../../services";
 
-import type { AsyncExecutor, SubschemaConfig } from "@graphql-tools/delegate";
+import type { AsyncExecutor } from "@graphql-tools/utils";
+import type { SubschemaConfig } from "@graphql-tools/delegate";
 
 type ServiceName = keyof typeof servicesListPorts;
 
